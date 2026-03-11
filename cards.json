@@ -1,0 +1,20 @@
+{
+  "cards": [
+    {
+      "title": "Card 1",
+      "text": "Some content for this card."
+    },
+    {
+      "title": "Card 2",
+      "text": "Another card with some text."
+    },
+    {
+      "title": "Card 3",
+      "text": "More content goes here."
+    },
+    {
+      "title": "Card 4",
+      "text": "You can add charts, stats, etc."
+    }
+  ]
+}
