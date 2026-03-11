@@ -9,21 +9,23 @@
 
 <script>
   fetch("cards.json")
-    .then(response => response.json())
+    .then(res => res.json())
     .then(data => {
       const grid = document.getElementById("dashboardGrid");
 
       data.cards.forEach(card => {
         const div = document.createElement("div");
         div.className = "card";
+
         div.innerHTML = `
+          <img src="${card.image}" alt="${card.title}" class="card-img" />
           <h2>${card.title}</h2>
           <p>${card.text}</p>
         `;
+
         grid.appendChild(div);
       });
-    })
-    .catch(err => console.error("Error loading cards:", err));
+    });
 </script>
 
 </html>
