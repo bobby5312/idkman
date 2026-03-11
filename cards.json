@@ -1,20 +1,19 @@
 {
   "cards": [
     {
-      "title": "Card 1",
-      "text": "Some content for this card."
+      "title": "Server Status",
+      "text": "All systems operational.",
+      "image": "images/server.png"
     },
     {
-      "title": "Card 2",
-      "text": "Another card with some text."
+      "title": "User Growth",
+      "text": "Up 12% this month.",
+      "image": "images/growth.png"
     },
     {
-      "title": "Card 3",
-      "text": "More content goes here."
-    },
-    {
-      "title": "Card 4",
-      "text": "You can add charts, stats, etc."
+      "title": "Revenue",
+      "text": "$24,500 this week.",
+      "image": "images/money.png"
     }
   ]
 }
