@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us - Custom Trading Card DB</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css?v=2.1" />
+    <link rel="stylesheet" href="about.css" />
+</head>
+
+<body>
+
+    <nav class="nav-tabs">
+        <a href="index.html" class="tab">Home</a>
+        <a href="About.html" class="tab active">About</a>
+    </nav>
+
+    <header class="header">
+        <h1>About Our Team</h1>
+        <p>The creators and contributors making this possible</p>
+    </header>
+
+    <main class="about-container" id="aboutContainer"></main>
+
+    <script>
+        function renderAbout(data) {
+            const container = document.getElementById("aboutContainer");
+            container.innerHTML = "";
+
+            // Creators section
+            if (data.creators && data.creators.length > 0) {
+                const creatorSection = document.createElement("section");
+                creatorSection.className = "about-section";
+                creatorSection.innerHTML = `<h2>Creators</h2>`;
+                const grid = document.createElement("div");
+                grid.className = "person-grid";
+
+                data.creators.forEach((person, index) => {
+                    const card = document.createElement("div");
+                    card.className = "person-card";
+                    card.style.animationDelay = `${index * 0.1}s`;
+                    card.innerHTML = `
+            <div class="person-img-container">
+              <img src="${person.image || 'https://via.placeholder.com/150'}" alt="${person.name}" class="person-img" />
+            </div>
+            <div class="person-info">
+              <h3>${person.name}</h3>
+              <span class="role">${person.role}</span>
+              <p>${person.description || ''}</p>
+            </div>
+          `;
+                    grid.appendChild(card);
+                });
+                creatorSection.appendChild(grid);
+                container.appendChild(creatorSection);
+            }
+
+            // Contributors section
+            if (data.contributors && data.contributors.length > 0) {
+                const contributorSection = document.createElement("section");
+                contributorSection.className = "about-section";
+                contributorSection.innerHTML = `<h2>Contributors</h2>`;
+                const grid = document.createElement("div");
+                grid.className = "person-grid";
+
+                data.contributors.forEach((person, index) => {
+                    const card = document.createElement("div");
+                    card.className = "person-card";
+                    card.style.animationDelay = `${(data.creators ? data.creators.length : 0) * 0.1 + index * 0.1}s`;
+                    card.innerHTML = `
+            <div class="person-img-container">
+              <img src="${person.image || 'https://via.placeholder.com/150'}" alt="${person.name}" class="person-img" />
+            </div>
+            <div class="person-info">
+              <h3>${person.name}</h3>
+              <span class="role">${person.role}</span>
+              <p>${person.description || ''}</p>
+            </div>
+          `;
+                    grid.appendChild(card);
+                });
+                contributorSection.appendChild(grid);
+                container.appendChild(contributorSection);
+            }
+        }
+
+        function fetchAbout() {
+            fetch("about.json?t=" + new Date().getTime())
+                .then(res => res.json())
+                .then(data => {
+                    renderAbout(data);
+                })
+                .catch(err => console.error("Error fetching about data:", err));
+        }
+
+        // Initial fetch
+        fetchAbout();
+    </script>
+</body>
+
+</html>
