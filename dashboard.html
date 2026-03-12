@@ -53,7 +53,7 @@
             <a href="dashboard.html" class="tab active" id="navDashboard">Dashboard</a>
         </div>
         <div class="nav-right">
-            <a href="signin.html" class="nav-signin-btn">Sign In</a>
+            <a href="signin.html" class="nav-signin-btn" id="navSigninBtn">Sign In</a>
         </div>
     </nav>
 
@@ -72,7 +72,8 @@
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
-        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-auth.js";
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-auth.js";
+        import { setupNavAuth } from "./auth-ui.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyDs1JZXpgr-IZdjI8Uoc0AREm_ur3eqnOM",
@@ -91,9 +92,10 @@
             if (user) {
                 // Allow access to page
                 document.getElementById("mainPanel").style.display = "block";
+                setupNavAuth(auth, user, signOut, false);
             } else {
                 // Kick them back to sign in
-                window.location.href = "signin.html";
+                setupNavAuth(auth, user, signOut, true);
             }
         });
     </script>

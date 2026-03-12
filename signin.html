@@ -26,7 +26,7 @@
             <a href="dashboard.html" class="tab" id="navDashboard" style="display: none;">Dashboard</a>
         </div>
         <div class="nav-right">
-            <a href="signin.html" class="nav-signin-btn active">Sign In</a>
+            <a href="signin.html" class="nav-signin-btn active" id="navSigninBtn">Sign In</a>
         </div>
     </nav>
 
@@ -66,6 +66,7 @@
         // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
         import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-auth.js";
+        import { setupNavAuth, openSignoutModal } from "./auth-ui.js";
 
         // Your web app's Firebase configuration
         const firebaseConfig = {
@@ -124,21 +125,18 @@
 
         // Handle Logout
         logoutBtn.addEventListener("click", () => {
-            signOut(auth).then(() => {
-                console.log("Signed out successfully");
-            }).catch((error) => {
-                console.error("Sign out error", error);
-            });
+            openSignoutModal(auth, signOut, false);
         });
 
         // Monitor Auth State
         onAuthStateChanged(auth, (user) => {
+            setupNavAuth(auth, user, signOut, false);
+
             if (user) {
                 // User is signed in
                 authContent.style.display = "none";
                 userInfo.classList.add("visible");
                 userWelcome.textContent = `Hello, ${user.email}!`;
-                document.getElementById('navDashboard').style.display = 'block';
             } else {
                 // User is signed out
                 authContent.style.display = "block";
@@ -146,10 +144,8 @@
                 emailInput.value = "";
                 passwordInput.value = "";
                 authMessage.textContent = "";
-                document.getElementById('navDashboard').style.display = 'none';
             }
         });
-
     </script>
 </body>
 
