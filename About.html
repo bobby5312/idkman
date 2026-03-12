@@ -19,6 +19,7 @@
     <nav class="nav-tabs">
         <a href="index.html" class="tab">Home</a>
         <a href="About.html" class="tab active">About</a>
+        <a href="dashboard.html" class="tab" id="navDashboard" style="display: none;">Dashboard</a>
         <a href="signin.html" class="tab">Sign In</a>
     </nav>
 
@@ -89,6 +90,31 @@
 
         // Initial fetch
         fetchAbout();
+    </script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDs1JZXpgr-IZdjI8Uoc0AREm_ur3eqnOM",
+            authDomain: "nyccardbase.firebaseapp.com",
+            projectId: "nyccardbase",
+            storageBucket: "nyccardbase.firebasestorage.app",
+            messagingSenderId: "964924272872",
+            appId: "1:964924272872:web:069f2e91bcc4c2d5d1195d",
+            measurementId: "G-5HS5LKVG1V"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                document.getElementById('navDashboard').style.display = 'block';
+            } else {
+                document.getElementById('navDashboard').style.display = 'none';
+            }
+        });
     </script>
 </body>
 

@@ -19,6 +19,7 @@
     <nav class="nav-tabs">
         <a href="index.html" class="tab">Home</a>
         <a href="About.html" class="tab">About</a>
+        <a href="dashboard.html" class="tab" id="navDashboard" style="display: none;">Dashboard</a>
         <a href="signin.html" class="tab active">Sign In</a>
     </nav>
 
@@ -41,10 +42,6 @@
             </form>
 
             <div id="authMessage" class="error-message"></div>
-
-            <div class="auth-toggle">
-                <span id="toggleText">Don't have an account? <span id="toggleLink">Sign Up</span></span>
-            </div>
         </div>
 
         <!-- Authenticated State -->
@@ -61,7 +58,7 @@
     <script type="module">
         // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
-        import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-auth.js";
+        import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-auth.js";
 
         // Your web app's Firebase configuration
         const firebaseConfig = {
@@ -79,7 +76,6 @@
         const auth = getAuth(app);
 
         // UI Elements
-        let isLoginMode = true;
         const authContent = document.getElementById("authContent");
         const userInfo = document.getElementById("userInfo");
 
@@ -92,37 +88,11 @@
         // Text Elements
         const authTitle = document.getElementById("authTitle");
         const authSubtitle = document.getElementById("authSubtitle");
-        const toggleLink = document.getElementById("toggleLink");
-        const toggleText = document.getElementById("toggleText");
         const authMessage = document.getElementById("authMessage");
 
         // Logged in Elements
         const userWelcome = document.getElementById("userWelcome");
         const logoutBtn = document.getElementById("logoutBtn");
-
-        // Toggle between Sign In and Sign Up
-        toggleLink.addEventListener("click", () => {
-            isLoginMode = !isLoginMode;
-            authMessage.textContent = "";
-            authMessage.className = "error-message";
-
-            if (isLoginMode) {
-                authTitle.textContent = "Welcome Back";
-                authSubtitle.textContent = "Enter your details to sign in.";
-                submitBtn.textContent = "Sign In";
-                toggleText.innerHTML = `Don't have an account? <span id="toggleLink">Sign Up</span>`;
-            } else {
-                authTitle.textContent = "Create Account";
-                authSubtitle.textContent = "Register to start your collection.";
-                submitBtn.textContent = "Sign Up";
-                toggleText.innerHTML = `Already have an account? <span id="toggleLink">Sign In</span>`;
-            }
-
-            // Re-attach listener to newly created span inside innerHTML
-            document.getElementById("toggleLink").addEventListener("click", () => {
-                toggleLink.click();
-            });
-        });
 
         // Handle Form Submission
         authForm.addEventListener("submit", (e) => {
@@ -134,27 +104,15 @@
             authMessage.className = "error-message";
             authMessage.style.color = "#94a3b8";
 
-            if (isLoginMode) {
-                signInWithEmailAndPassword(auth, email, password)
-                    .then((userCredential) => {
-                        // Signed in 
-                        console.log("Logged in successfully");
-                    })
-                    .catch((error) => {
-                        authMessage.style.color = "#ef4444";
-                        authMessage.textContent = "Error: " + error.message;
-                    });
-            } else {
-                createUserWithEmailAndPassword(auth, email, password)
-                    .then((userCredential) => {
-                        // Signed up 
-                        console.log("Signed up successfully");
-                    })
-                    .catch((error) => {
-                        authMessage.style.color = "#ef4444";
-                        authMessage.textContent = "Error: " + error.message;
-                    });
-            }
+            signInWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    // Signed in 
+                    console.log("Logged in successfully");
+                })
+                .catch((error) => {
+                    authMessage.style.color = "#ef4444";
+                    authMessage.textContent = "Error: " + error.message;
+                });
         });
 
         // Handle Logout
@@ -172,16 +130,18 @@
                 // User is signed in
                 authContent.style.display = "none";
                 userInfo.classList.add("visible");
-                userWelcome.textContent = \`Hello, \${user.email}!\`;
-      } else {
-        // User is signed out
-        authContent.style.display = "block";
-        userInfo.classList.remove("visible");
-        emailInput.value = "";
-        passwordInput.value = "";
-        authMessage.textContent = "";
-      }
-    });
+                userWelcome.textContent = `Hello, ${user.email}!`;
+                document.getElementById('navDashboard').style.display = 'block';
+            } else {
+                // User is signed out
+                authContent.style.display = "block";
+                userInfo.classList.remove("visible");
+                emailInput.value = "";
+                passwordInput.value = "";
+                authMessage.textContent = "";
+                document.getElementById('navDashboard').style.display = 'none';
+            }
+        });
 
     </script>
 </body>
