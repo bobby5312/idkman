@@ -1,7 +1,7 @@
 {
   "cards": [
     {
-      "cardNumber": "001",
+      "cardNumber": "000",
       "title": "Dev Card",
       "text": "All systems operational.",
       "image": "images/devcard.jpg",
@@ -10,7 +10,7 @@
       "location": "Mainframe"
     },
     {
-      "cardNumber": "002",
+      "cardNumber": "00I",
       "title": "Test1",
       "text": "This is a test card. There are only ?? of these in existence.",
       "image": "images/test1.jpg",
@@ -19,7 +19,7 @@
       "location": "Database"
     },
     {
-      "cardNumber": "003",
+      "cardNumber": "001",
       "title": "Sailors’ Memorial Arch",
       "text": "Desc comming soon.",
       "image": "images/arch.jpg",
@@ -28,7 +28,7 @@
       "location": "QA Lab"
     },
     {
-      "cardNumber": "004",
+      "cardNumber": "???",
       "title": "coming soon...",
       "text": "Check back soon?",
       "image": "images/comingsoon.png",
