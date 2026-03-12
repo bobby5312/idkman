@@ -1,15 +1,16 @@
 {
+    "about_us": "We are a passionate group dedicated to building the ultimate custom trading card database. Our mission is to provide an accessible and visually stunning platform for collectors to organize, share, and showcase their favorite cards. Every piece of this application is crafted to ensure a seamless and premium experience for the community.",
     "contributors": [
         {
             "name": "Jordan",
             "role": "UI/UX Consultant",
-            "image": "https://api.dicebear.com/9.x/avataaars/svg?seed=Jordan",
+            "image": "https://api.dicebear.com/9.x/shapes/svg?seed=Jordan",
             "description": "Provided feedback on the premium feel and animations."
         },
         {
             "name": "Taylor",
             "role": "QA Tester",
-            "image": "https://api.dicebear.com/9.x/avataaars/svg?seed=Taylor",
+            "image": "https://api.dicebear.com/9.x/shapes/svg?seed=Taylor",
             "description": "Helped squash bugs and ensure a smooth experience."
         }
     ]
