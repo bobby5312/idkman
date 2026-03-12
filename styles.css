@@ -325,6 +325,7 @@ body {
   border-radius: 0.4rem;
   border: 1px solid rgba(255, 255, 255, 0.05);
   box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.05);
+  overflow: hidden;
 }
 
 .card h2 {
@@ -344,7 +345,13 @@ body {
   font-size: 0.9rem;
   color: #cbd5e1;
   line-height: 1.5;
-  flex-grow: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
 }
 
 /* Card Number Indicator */
@@ -494,6 +501,7 @@ body {
   gap: 1.2rem;
   font-size: 1.1rem;
   color: #cbd5e1;
+  overflow: hidden;
 }
 
 .back-details strong {
@@ -502,8 +510,9 @@ body {
 }
 
 .back-text {
-  margin-top: auto;
-  font-size: 1.25rem;
+  flex: 1;
+  overflow-y: auto;
+  font-size: 1.15rem;
   line-height: 1.6;
   font-style: italic;
   border-left: 3px solid #38bdf8;
@@ -511,6 +520,21 @@ body {
   background: rgba(255, 255, 255, 0.03);
   padding: 1rem;
   border-radius: 0 0.5rem 0.5rem 0;
+}
+
+/* Custom scrollbar for back-text */
+.back-text::-webkit-scrollbar {
+  width: 6px;
+}
+
+.back-text::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+}
+
+.back-text::-webkit-scrollbar-thumb {
+  background: rgba(56, 189, 248, 0.5);
+  border-radius: 4px;
 }
 
 /* Sign Out Modal */
