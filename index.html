@@ -215,6 +215,31 @@
     // Poll every 1.5 seconds so when user saves cards.json, it updates fast
     setInterval(fetchCards, 1500);
   </script>
+
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-analytics.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyDs1JZXpgr-IZdjI8Uoc0AREm_ur3eqnOM",
+      authDomain: "nyccardbase.firebaseapp.com",
+      projectId: "nyccardbase",
+      storageBucket: "nyccardbase.firebasestorage.app",
+      messagingSenderId: "964924272872",
+      appId: "1:964924272872:web:069f2e91bcc4c2d5d1195d",
+      measurementId: "G-5HS5LKVG1V"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+  </script>
+
 </body>
 
 </html>
