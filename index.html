@@ -35,20 +35,9 @@
         // Staggered pop-in animation
         div.style.animationDelay = `${index * 0.1}s`;
 
-        // Deterministic pseudo-random rarity based on title length
-        const rarities = ["Common", "Rare", "Epic", "Legendary", "Mythic"];
-        const rarityIdx = (card.title ? card.title.length : 0) % rarities.length;
-        const rarity = rarities[rarityIdx];
-
-        let badgeColor = "#94a3b8"; // Default Common
-        if (rarity === "Rare") badgeColor = "#3b82f6";
-        if (rarity === "Epic") badgeColor = "#a855f7";
-        if (rarity === "Legendary") badgeColor = "#f59e0b";
-        if (rarity === "Mythic") badgeColor = "#ef4444";
-
         div.innerHTML = `
-          <div class="card-badge" style="background: ${badgeColor}; box-shadow: 0 0 10px ${badgeColor}80;">${rarity}</div>
-          <div class="card-content">
+          <div class="card-number">#${card.cardNumber || '000'}</div>
+          <div class="card-content" style="background: ${card.bg_color || '#020617'};">
             <div class="card-img-container">
               <img src="${card.image || 'https://via.placeholder.com/300x400?text=No+Image'}" alt="${card.title}" class="card-img" />
             </div>

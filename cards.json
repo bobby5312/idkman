@@ -1,19 +1,25 @@
 {
   "cards": [
     {
+      "cardNumber": "001",
       "title": "Server Status",
       "text": "All systems operational.",
-      "image": "images/server.png"
+      "image": "images/server.png",
+      "bg_color": "#1f2937"
     },
     {
+      "cardNumber": "002",
       "title": "User Growth",
       "text": "Up 12% this month.",
-      "image": "images/growth.png"
+      "image": "images/growth.png",
+      "bg_color": "#1e40af"
     },
     {
+      "cardNumber": "003",
       "title": "TEST IMAGE",
       "text": "$NOTHI this week.",
-      "image": "images/exp.jpg"
+      "image": "images/exp.jpg",
+      "bg_color": "#b91c1c"
     }
   ]
 }
