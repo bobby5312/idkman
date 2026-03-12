@@ -188,13 +188,19 @@ body {
   position: absolute;
   top: 10px;
   right: 15px;
-  color: rgba(255, 255, 255, 0.7);
+  color: #f8fafc;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.35rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   font-family: 'Outfit', sans-serif;
-  font-size: 0.85rem;
-  font-weight: 800;
+  font-size: 0.8rem;
+  font-weight: 700;
   z-index: 10;
   letter-spacing: 1px;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
   transform: translateZ(20px);
 }
 
