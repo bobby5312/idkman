@@ -55,7 +55,6 @@
           </div>
           <div class="card-info" style="border-radius: 1rem;">
             <h2 style="font-size: 1.8rem; margin-bottom: 0.5rem; border-color: rgba(255,255,255,0.2);">${card.title}</h2>
-            <p style="font-size: 1.1rem; color: #94a3b8;">Click to flip and read description!</p>
           </div>
         </div>
       `;
@@ -77,7 +76,9 @@
       // slight delay to trigger CSS opacity transition
       setTimeout(() => {
         modalOverlay.classList.add("visible");
-      }, 10);
+        // Automatically animate the flip as it opens
+        modalCardInner.classList.add("is-flipped");
+      }, 50);
     }
 
     function closeModal() {
