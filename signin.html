@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign In - Custom Trading Card DB</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css?v=2.1" />
+    <link rel="stylesheet" href="signin.css" />
+</head>
+
+<body>
+
+    <nav class="nav-tabs">
+        <a href="index.html" class="tab">Home</a>
+        <a href="About.html" class="tab">About</a>
+        <a href="signin.html" class="tab active">Sign In</a>
+    </nav>
+
+    <header class="header">
+        <h1>Account Access</h1>
+        <p>Join the community to save your cards</p>
+    </header>
+
+    <main class="auth-container">
+        <div id="authContent">
+            <div class="auth-header">
+                <h2 id="authTitle">Welcome Back</h2>
+                <p id="authSubtitle">Enter your details to sign in.</p>
+            </div>
+
+            <form id="authForm" class="auth-form">
+                <input type="email" id="emailInput" class="auth-input" placeholder="Email Address" required />
+                <input type="password" id="passwordInput" class="auth-input" placeholder="Password" required />
+                <button type="submit" id="submitBtn" class="auth-button">Sign In</button>
+            </form>
+
+            <div id="authMessage" class="error-message"></div>
+
+            <div class="auth-toggle">
+                <span id="toggleText">Don't have an account? <span id="toggleLink">Sign Up</span></span>
+            </div>
+        </div>
+
+        <!-- Authenticated State -->
+        <div id="userInfo" class="user-info">
+            <div class="auth-header">
+                <h2 id="userWelcome">Hello!</h2>
+                <p>You are successfully logged in.</p>
+            </div>
+            <div id="loggedInMessage" class="success-message"></div>
+            <button id="logoutBtn" class="auth-button logout-button">Sign Out</button>
+        </div>
+    </main>
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-auth.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDs1JZXpgr-IZdjI8Uoc0AREm_ur3eqnOM",
+            authDomain: "nyccardbase.firebaseapp.com",
+            projectId: "nyccardbase",
+            storageBucket: "nyccardbase.firebasestorage.app",
+            messagingSenderId: "964924272872",
+            appId: "1:964924272872:web:069f2e91bcc4c2d5d1195d",
+            measurementId: "G-5HS5LKVG1V"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        // UI Elements
+        let isLoginMode = true;
+        const authContent = document.getElementById("authContent");
+        const userInfo = document.getElementById("userInfo");
+
+        // Form Elements
+        const authForm = document.getElementById("authForm");
+        const emailInput = document.getElementById("emailInput");
+        const passwordInput = document.getElementById("passwordInput");
+        const submitBtn = document.getElementById("submitBtn");
+
+        // Text Elements
+        const authTitle = document.getElementById("authTitle");
+        const authSubtitle = document.getElementById("authSubtitle");
+        const toggleLink = document.getElementById("toggleLink");
+        const toggleText = document.getElementById("toggleText");
+        const authMessage = document.getElementById("authMessage");
+
+        // Logged in Elements
+        const userWelcome = document.getElementById("userWelcome");
+        const logoutBtn = document.getElementById("logoutBtn");
+
+        // Toggle between Sign In and Sign Up
+        toggleLink.addEventListener("click", () => {
+            isLoginMode = !isLoginMode;
+            authMessage.textContent = "";
+            authMessage.className = "error-message";
+
+            if (isLoginMode) {
+                authTitle.textContent = "Welcome Back";
+                authSubtitle.textContent = "Enter your details to sign in.";
+                submitBtn.textContent = "Sign In";
+                toggleText.innerHTML = `Don't have an account? <span id="toggleLink">Sign Up</span>`;
+            } else {
+                authTitle.textContent = "Create Account";
+                authSubtitle.textContent = "Register to start your collection.";
+                submitBtn.textContent = "Sign Up";
+                toggleText.innerHTML = `Already have an account? <span id="toggleLink">Sign In</span>`;
+            }
+
+            // Re-attach listener to newly created span inside innerHTML
+            document.getElementById("toggleLink").addEventListener("click", () => {
+                toggleLink.click();
+            });
+        });
+
+        // Handle Form Submission
+        authForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const email = emailInput.value;
+            const password = passwordInput.value;
+
+            authMessage.textContent = "Processing...";
+            authMessage.className = "error-message";
+            authMessage.style.color = "#94a3b8";
+
+            if (isLoginMode) {
+                signInWithEmailAndPassword(auth, email, password)
+                    .then((userCredential) => {
+                        // Signed in 
+                        console.log("Logged in successfully");
+                    })
+                    .catch((error) => {
+                        authMessage.style.color = "#ef4444";
+                        authMessage.textContent = "Error: " + error.message;
+                    });
+            } else {
+                createUserWithEmailAndPassword(auth, email, password)
+                    .then((userCredential) => {
+                        // Signed up 
+                        console.log("Signed up successfully");
+                    })
+                    .catch((error) => {
+                        authMessage.style.color = "#ef4444";
+                        authMessage.textContent = "Error: " + error.message;
+                    });
+            }
+        });
+
+        // Handle Logout
+        logoutBtn.addEventListener("click", () => {
+            signOut(auth).then(() => {
+                console.log("Signed out successfully");
+            }).catch((error) => {
+                console.error("Sign out error", error);
+            });
+        });
+
+        // Monitor Auth State
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                // User is signed in
+                authContent.style.display = "none";
+                userInfo.classList.add("visible");
+                userWelcome.textContent = \`Hello, \${user.email}!\`;
+      } else {
+        // User is signed out
+        authContent.style.display = "block";
+        userInfo.classList.remove("visible");
+        emailInput.value = "";
+        passwordInput.value = "";
+        authMessage.textContent = "";
+      }
+    });
+
+    </script>
+</body>
+
+</html>
