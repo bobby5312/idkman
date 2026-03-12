@@ -21,8 +21,8 @@
     {
       "cardNumber": "001",
       "title": "Sailors’ Memorial Arch",
-      "text": "Gemini said
-The Soldiers' and Sailors' Memorial Arch is a grand neoclassical monument located in Brooklyn's Grand Army Plaza, dedicated in 1892 to honor those who fought for the Union during the Civil War. It is topped by a massive bronze "quadriga" featuring Columbia, the personification of America, flanked by two winged figures of Victory. The arch serves as a centerpiece for the borough, often compared to the Arc de Triomphe in Paris for its scale and historical significance.","image": "images/arch.jpg",
+      "text": "The Soldiers' and Sailors' Memorial Arch is a grand neoclassical monument located in Brooklyn's Grand Army Plaza, dedicated in 1892 to honor those who fought for the Union during the Civil War. It is topped by a massive bronze 'quadriga' featuring Columbia, the personification of America, flanked by two winged figures of Victory. The arch serves as a centerpiece for the borough, often compared to the Arc de Triomphe in Paris for its scale and historical significance.",
+      "image": "images/arch.jpg",
       "bg_color": "#b91c1c",
       "creator": "Xeos",
       "location": "20 Grand Army Plz"
