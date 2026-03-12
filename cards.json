@@ -12,7 +12,7 @@
     {
       "cardNumber": "002",
       "title": "Test1",
-      "text": "This is a test card. There are only 3 of these in existence.",
+      "text": "This is a test card. There are only ?? of these in existence.",
       "image": "images/test1.jpg",
       "bg_color": "#1e40af",
       "creator": "Developer",
