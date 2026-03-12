@@ -16,13 +16,13 @@
       "image": "images/test1.jpg",
       "bg_color": "#1e40af",
       "creator": "Developer",
-      "location": "Sector 7"
+      "location": "Database"
     },
     {
       "cardNumber": "003",
-      "title": "TEST IMAGE",
-      "text": "$NOTHI this week.",
-      "image": "images/exp.jpg",
+      "title": "Sailors’ Memorial Arch",
+      "text": "Desc comming soon.",
+      "image": "images/sailorsarch.jpg",
       "bg_color": "#b91c1c",
       "creator": "Tester",
       "location": "QA Lab"
@@ -30,9 +30,9 @@
     {
       "cardNumber": "004",
       "title": "coming soon...",
-      "text": "$NOTHI this week.",
-      "image": "images/exp.jpg",
-      "bg_color": "#b91c1c",
+      "text": "Check back soon?",
+      "image": "images/comingsoon.png",
+      "bg_color": "#87AB8C",
       "creator": "Unknown",
       "location": "Unknown"
     }
