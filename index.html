@@ -1,31 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <title>Simple Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Custom Trading Card DB</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
-<main class="dashboard-grid" id="dashboardGrid"></main>
 
-<script>
-  fetch("cards.json")
-    .then(res => res.json())
-    .then(data => {
+<body>
+
+  <header class="header">
+    <h1>Card Collection</h1>
+    <p>Live synchronized trading card database</p>
+  </header>
+
+  <main class="dashboard-grid" id="dashboardGrid"></main>
+
+  <script>
+    let currentDataString = "";
+
+    function renderCards(cards) {
       const grid = document.getElementById("dashboardGrid");
+      grid.innerHTML = ""; // Clear existing
 
-      data.cards.forEach(card => {
+      cards.forEach((card, index) => {
         const div = document.createElement("div");
         div.className = "card";
+        // Staggered pop-in animation
+        div.style.animationDelay = `${index * 0.1}s`;
+
+        // Deterministic pseudo-random rarity based on title length
+        const rarities = ["Common", "Rare", "Epic", "Legendary", "Mythic"];
+        const rarityIdx = (card.title ? card.title.length : 0) % rarities.length;
+        const rarity = rarities[rarityIdx];
+
+        let badgeColor = "#94a3b8"; // Default Common
+        if (rarity === "Rare") badgeColor = "#3b82f6";
+        if (rarity === "Epic") badgeColor = "#a855f7";
+        if (rarity === "Legendary") badgeColor = "#f59e0b";
+        if (rarity === "Mythic") badgeColor = "#ef4444";
 
         div.innerHTML = `
-          <img src="${card.image}" alt="${card.title}" class="card-img" />
-          <h2>${card.title}</h2>
-          <p>${card.text}</p>
+          <div class="card-badge" style="background: ${badgeColor}; box-shadow: 0 0 10px ${badgeColor}80;">${rarity}</div>
+          <div class="card-content">
+            <div class="card-img-container">
+              <img src="${card.image || 'https://via.placeholder.com/300x400?text=No+Image'}" alt="${card.title}" class="card-img" />
+            </div>
+            <div class="card-info">
+              <h2>${card.title}</h2>
+              <p>${card.text}</p>
+            </div>
+          </div>
         `;
+
+        // Add 3D mouse move effect and dynamic glare
+        div.addEventListener('mousemove', (e) => {
+          const rect = div.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+
+          // Calculate rotation
+          const rotateX = ((y - centerY) / centerY) * -12; // Max 12 deg tilt
+          const rotateY = ((x - centerX) / centerX) * 12;
+
+          // Pointer percentages for glare position
+          const px = (x / rect.width) * 100;
+          const py = (y / rect.height) * 100;
+
+          div.style.setProperty('--rx', rotateX + 'deg');
+          div.style.setProperty('--ry', rotateY + 'deg');
+          div.style.setProperty('--mx', px + '%');
+          div.style.setProperty('--my', py + '%');
+        });
+
+        div.addEventListener('mouseleave', () => {
+          // Reset positioning
+          div.style.setProperty('--rx', '0deg');
+          div.style.setProperty('--ry', '0deg');
+          div.style.setProperty('--mx', '50%');
+          div.style.setProperty('--my', '50%');
+        });
 
         grid.appendChild(div);
       });
-    });
-</script>
+    }
+
+    function fetchCards() {
+      // Append timestamp parameter to force bypass of browser cache
+      fetch("cards.json?t=" + new Date().getTime())
+        .then(res => res.json())
+        .then(data => {
+          const newDataString = JSON.stringify(data);
+          // Re-render ONLY if data has changed (prevents flickering)
+          if (newDataString !== currentDataString) {
+            currentDataString = newDataString;
+            renderCards(data.cards || []);
+          }
+        })
+        .catch(err => console.error("Error fetching cards:", err));
+    }
+
+    // Initial fetch
+    fetchCards();
+
+    // Poll every 1.5 seconds so when user saves cards.json, it updates fast
+    setInterval(fetchCards, 1500);
+  </script>
+</body>
 
 </html>
