@@ -11,7 +11,7 @@
             "name": "Xeos",
             "role": "Lead Dev",
             "image": "https://api.dicebear.com/9.x/shapes/svg?seed=Taylor",
-            "description": "Contact me at [xeoslab@gmail.com]"
+            "description": "Contact me at <a href=\"mailto:xeoslab@gmail.com\" style=\"color: #38bdf8; text-decoration: none;\">xeoslab@gmail.com</a>"
         }
     ]
 }
