@@ -10,7 +10,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=3.1" />
+    <link rel="stylesheet" href="styles.css?v=3.2" />
     <link rel="stylesheet" href="signin.css" />
 </head>
 
@@ -24,6 +24,8 @@
             <a href="index.html" class="tab">Home</a>
             <a href="About.html" class="tab">About</a>
             <a href="dashboard.html" class="tab" id="navDashboard" style="display: none;">Dashboard</a>
+        </div>
+        <div class="nav-right">
             <a href="signin.html" class="nav-signin-btn active" id="navSigninBtn">Sign In</a>
         </div>
     </nav>
@@ -64,7 +66,7 @@
         // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
         import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-auth.js";
-        import { setupNavAuth, openSignoutModal } from "./auth-ui.js";
+        import { setupNavAuth, openSignoutModal } from "./auth-ui.js?v=2";
 
         // Your web app's Firebase configuration
         const firebaseConfig = {

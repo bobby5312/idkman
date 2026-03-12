@@ -10,7 +10,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=3.1" />
+    <link rel="stylesheet" href="styles.css?v=3.2" />
     <link rel="stylesheet" href="about.css" />
 </head>
 
@@ -24,6 +24,8 @@
             <a href="index.html" class="tab">Home</a>
             <a href="About.html" class="tab active">About</a>
             <a href="dashboard.html" class="tab" id="navDashboard" style="display: none;">Dashboard</a>
+        </div>
+        <div class="nav-right">
             <a href="signin.html" class="nav-signin-btn" id="navSigninBtn">Sign In</a>
         </div>
     </nav>
@@ -99,7 +101,7 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
         import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-auth.js";
-        import { setupNavAuth } from "./auth-ui.js";
+        import { setupNavAuth } from "./auth-ui.js?v=2";
 
         const firebaseConfig = {
             apiKey: "AIzaSyDs1JZXpgr-IZdjI8Uoc0AREm_ur3eqnOM",

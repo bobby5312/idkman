@@ -8,7 +8,8 @@ export function setupNavAuth(auth, user, signOutFunc, redirectOnSignOut = false)
         if (navSigninBtn) {
             navSigninBtn.textContent = 'Sign Out';
             navSigninBtn.href = '#';
-            navSigninBtn.classList.remove('active'); // active styling looks odd for signout
+            navSigninBtn.classList.remove('active');
+            navSigninBtn.classList.add('signout');
             navSigninBtn.onclick = (e) => {
                 e.preventDefault();
                 showSignoutModal(auth, signOutFunc, redirectOnSignOut);
@@ -21,6 +22,7 @@ export function setupNavAuth(auth, user, signOutFunc, redirectOnSignOut = false)
             navSigninBtn.textContent = 'Sign In';
             navSigninBtn.href = 'signin.html';
             navSigninBtn.onclick = null;
+            navSigninBtn.classList.remove('signout');
             if (window.location.pathname.includes('signin.html')) {
                 navSigninBtn.classList.add('active');
             }
@@ -39,18 +41,16 @@ function showSignoutModal(authInst, signOutFunc, redirectOnSignOut) {
         overlay.className = 'signout-overlay';
         overlay.innerHTML = `
       <div class="signout-modal">
-        <h2>Sign Out</h2>
-        <p>Are you sure you want to log out of your account?</p>
-        <div class="signout-buttons">
-          <button class="signout-btn signout-cancel" id="signoutCancelBtn">Cancel</button>
-          <button class="signout-btn signout-confirm" id="signoutConfirmBtn">Sign Out</button>
-        </div>
+        <h2>Ready to Leave?</h2>
+        <button class="signout-btn signout-confirm" id="signoutConfirmBtn">SIGN OUT</button>
       </div>
     `;
         document.body.appendChild(overlay);
 
-        document.getElementById('signoutCancelBtn').onclick = () => {
-            overlay.classList.remove('visible');
+        overlay.onclick = (e) => {
+            if (e.target === overlay) {
+                overlay.classList.remove('visible');
+            }
         };
 
         document.getElementById('signoutConfirmBtn').onclick = () => {
