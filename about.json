@@ -1,18 +1,4 @@
 {
-    "creators": [
-        {
-            "name": "Alex",
-            "role": "Lead Developer & Designer",
-            "image": "https://api.dicebear.com/9.x/avataaars/svg?seed=Alex",
-            "description": "Built the core application and designed the visual language."
-        },
-        {
-            "name": "Sam",
-            "role": "Database Architect",
-            "image": "https://api.dicebear.com/9.x/avataaars/svg?seed=Sam",
-            "description": "Structured the card data and implemented the saving mechanisms."
-        }
-    ],
     "contributors": [
         {
             "name": "Jordan",
