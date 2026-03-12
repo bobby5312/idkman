@@ -23,7 +23,10 @@
 
   <header class="header">
     <h1>Card Database</h1>
-    <p>Search for YOUR card!</p>
+    <div class="search-container">
+      <input type="text" id="searchInput" placeholder="Search by name or number..." class="search-bar"
+        autocomplete="off" />
+    </div>
   </header>
 
   <main class="dashboard-grid" id="dashboardGrid"></main>
@@ -44,6 +47,7 @@
 
   <script>
     let currentDataString = "";
+    let currentCardsList = [];
 
     function openModal(card) {
       const modalOverlay = document.getElementById("cardModal");
@@ -178,11 +182,32 @@
           // Re-render ONLY if data has changed (prevents flickering)
           if (newDataString !== currentDataString) {
             currentDataString = newDataString;
-            renderCards(data.cards || []);
+            currentCardsList = data.cards || [];
+
+            // Respect search filter immediately upon data refresh
+            const searchTerm = document.getElementById("searchInput").value.toLowerCase();
+            const filteredCards = currentCardsList.filter(card => {
+              const nameMatch = card.title && card.title.toLowerCase().includes(searchTerm);
+              const numMatch = card.cardNumber && card.cardNumber.toString().toLowerCase().includes(searchTerm);
+              return nameMatch || numMatch;
+            });
+
+            renderCards(filteredCards);
           }
         })
         .catch(err => console.error("Error fetching cards:", err));
     }
+
+    // Filter cards as the user types
+    document.getElementById("searchInput").addEventListener("input", (e) => {
+      const searchTerm = e.target.value.toLowerCase();
+      const filteredCards = currentCardsList.filter(card => {
+        const nameMatch = card.title && card.title.toLowerCase().includes(searchTerm);
+        const numMatch = card.cardNumber && card.cardNumber.toString().toLowerCase().includes(searchTerm);
+        return nameMatch || numMatch;
+      });
+      renderCards(filteredCards);
+    });
 
     // Initial fetch
     fetchCards();
