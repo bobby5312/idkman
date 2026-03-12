@@ -5,28 +5,36 @@
       "title": "Dev Card",
       "text": "All systems operational.",
       "image": "images/devcard.jpg",
-      "bg_color": "#1f2937"
+      "bg_color": "#1f2937",
+      "creator": "System Admin",
+      "location": "Mainframe"
     },
     {
       "cardNumber": "002",
       "title": "Test1",
       "text": "This is a test card. There are only 3 of these in existence.",
       "image": "images/growth.png",
-      "bg_color": "#1e40af"
+      "bg_color": "#1e40af",
+      "creator": "Developer",
+      "location": "Sector 7"
     },
     {
       "cardNumber": "003",
       "title": "TEST IMAGE",
       "text": "$NOTHI this week.",
       "image": "images/exp.jpg",
-      "bg_color": "#b91c1c"
+      "bg_color": "#b91c1c",
+      "creator": "Tester",
+      "location": "QA Lab"
     },
     {
       "cardNumber": "004",
       "title": "coming soon...",
       "text": "$NOTHI this week.",
       "image": "images/exp.jpg",
-      "bg_color": "#b91c1c"
+      "bg_color": "#b91c1c",
+      "creator": "Unknown",
+      "location": "Unknown"
     }
   ]
 }

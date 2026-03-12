@@ -22,8 +22,83 @@
 
   <main class="dashboard-grid" id="dashboardGrid"></main>
 
+  <!-- Card Modal Overlay -->
+  <div id="cardModal" class="modal-overlay hidden">
+    <div class="modal-container">
+      <div class="modal-card" id="modalCard">
+        <div class="modal-card-inner" id="modalCardInner">
+          <div class="modal-card-front" id="modalCardFront">
+          </div>
+          <div class="modal-card-back" id="modalCardBack">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script>
     let currentDataString = "";
+
+    function openModal(card) {
+      const modalOverlay = document.getElementById("cardModal");
+      const modalCardInner = document.getElementById("modalCardInner");
+      const modalCardFront = document.getElementById("modalCardFront");
+      const modalCardBack = document.getElementById("modalCardBack");
+
+      modalCardInner.classList.remove("is-flipped");
+
+      modalCardFront.innerHTML = `
+        <div class="card-number" style="top: 15px; right: 20px; font-size: 1.1rem; padding: 0.4rem 0.8rem;">#${card.cardNumber || '000'}</div>
+        <div class="card-content" style="background: ${card.bg_color || '#020617'}; border-radius: 1.5rem; padding: 1rem;">
+          <div class="card-img-container" style="height: 65%;">
+            <img src="${card.image || 'https://via.placeholder.com/300x400?text=No+Image'}" alt="${card.title}" class="card-img" />
+          </div>
+          <div class="card-info" style="border-radius: 1rem;">
+            <h2 style="font-size: 1.8rem; margin-bottom: 0.5rem; border-color: rgba(255,255,255,0.2);">${card.title}</h2>
+            <p style="font-size: 1.1rem; color: #94a3b8;">Click to flip and read description!</p>
+          </div>
+        </div>
+      `;
+
+      modalCardBack.style.background = card.bg_color || '#020617';
+      modalCardBack.innerHTML = `
+        <div class="back-content">
+          <h2>${card.title}</h2>
+          <div class="back-details">
+            <p><strong>Creator:</strong> ${card.creator || 'Unknown'}</p>
+            <p><strong>Location:</strong> ${card.location || 'Unknown'}</p>
+            <div class="back-text">${card.text || ''}</div>
+          </div>
+          <p style="text-align: center; color: #64748b; font-size: 0.9rem; margin-top: auto;">Click outside to close</p>
+        </div>
+      `;
+
+      modalOverlay.classList.remove("hidden");
+      // slight delay to trigger CSS opacity transition
+      setTimeout(() => {
+        modalOverlay.classList.add("visible");
+      }, 10);
+    }
+
+    function closeModal() {
+      const modalOverlay = document.getElementById("cardModal");
+      modalOverlay.classList.remove("visible");
+      setTimeout(() => {
+        modalOverlay.classList.add("hidden");
+      }, 300);
+    }
+
+    // Modal Events
+    document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById("cardModal").addEventListener("click", (e) => {
+        if (e.target.closest('.modal-card')) {
+          document.getElementById("modalCardInner").classList.toggle('is-flipped');
+          return;
+        }
+        closeModal(); // Clicking outside the card closes it
+      });
+    });
+
 
     function renderCards(cards) {
       const grid = document.getElementById("dashboardGrid");
@@ -77,6 +152,10 @@
           div.style.setProperty('--ry', '0deg');
           div.style.setProperty('--mx', '50%');
           div.style.setProperty('--my', '50%');
+        });
+
+        div.addEventListener('click', () => {
+          openModal(card);
         });
 
         grid.appendChild(div);
