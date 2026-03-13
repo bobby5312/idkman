@@ -28,6 +28,15 @@
       "location": "20 Grand Army Plz"
     },
     {
+      "cardNumber": "002",
+      "title": "Wonder Wheel",
+      "text": "The Wonder Wheel is a historic Ferris wheel located in Coney Island, Brooklyn. Built in 1920, it stands 150 feet tall and offers panoramic views of the Atlantic Ocean and the New York City skyline. The wheel features 24 cars that can hold up to 6 people each, and it is one of the few Ferris wheels in the world with stationary center support towers.",
+      "image": "images/wonderwheel.jpg",
+      "bg_color": "#b91c1c",
+      "creator": "Xeos",
+      "location": "Inside Coney Island Park"
+    },
+    {
       "cardNumber": "???",
       "title": "coming soon...",
       "text": "Check back soon?",
