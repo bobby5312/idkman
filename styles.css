@@ -502,6 +502,7 @@ body {
   font-size: 1.1rem;
   color: #cbd5e1;
   overflow: hidden;
+  min-height: 0;
 }
 
 .back-details strong {
@@ -512,6 +513,7 @@ body {
 .back-text {
   flex: 1;
   overflow-y: auto;
+  min-height: 0;
   font-size: 1.15rem;
   line-height: 1.6;
   font-style: italic;
