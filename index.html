@@ -57,6 +57,7 @@
   <script>
     let currentDataString = "";
     let currentCardsList = [];
+    window.isContributor = false;
 
     function openModal(card) {
       const modalOverlay = document.getElementById("cardModal");
@@ -203,13 +204,16 @@
         .then(data => {
           const newDataString = JSON.stringify(data);
           // Re-render ONLY if data has changed (prevents flickering)
-          if (newDataString !== currentDataString) {
-            currentDataString = newDataString;
+          // We also include isContributor inside the string check to re-render when auth changes
+          const cacheKey = newDataString + window.isContributor;
+          if (cacheKey !== currentDataString) {
+            currentDataString = cacheKey;
             currentCardsList = data.cards || [];
 
             // Respect search filter immediately upon data refresh
             const searchTerm = document.getElementById("searchInput").value.toLowerCase();
             const filteredCards = currentCardsList.filter(card => {
+              if (card.hidden && !window.isContributor) return false;
               const nameMatch = card.title && card.title.toLowerCase().includes(searchTerm);
               const numMatch = card.cardNumber && card.cardNumber.toString().toLowerCase().includes(searchTerm);
               return nameMatch || numMatch;
@@ -225,6 +229,7 @@
     document.getElementById("searchInput").addEventListener("input", (e) => {
       const searchTerm = e.target.value.toLowerCase();
       const filteredCards = currentCardsList.filter(card => {
+        if (card.hidden && !window.isContributor) return false;
         const nameMatch = card.title && card.title.toLowerCase().includes(searchTerm);
         const numMatch = card.cardNumber && card.cardNumber.toString().toLowerCase().includes(searchTerm);
         return nameMatch || numMatch;
@@ -263,6 +268,7 @@
     const auth = getAuth(app);
 
     onAuthStateChanged(auth, (user) => {
+      window.isContributor = !!user; // true if logged in, false if not
       setupNavAuth(auth, user, signOut, false);
     });
   </script>

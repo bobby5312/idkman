@@ -7,7 +7,8 @@
       "image": "images/devcard.jpg",
       "bg_color": "#1f2937",
       "creator": "System Admin",
-      "location": "Mainframe"
+      "location": "Mainframe",
+      "hidden": true
     },
     {
       "cardNumber": "N/A",
@@ -16,7 +17,8 @@
       "image": "images/test1.jpg",
       "bg_color": "#1e40af",
       "creator": "Developer",
-      "location": "Database"
+      "location": "Database",
+      "hidden": true
     },
     {
       "cardNumber": "001",
