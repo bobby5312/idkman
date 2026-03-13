@@ -42,6 +42,21 @@
             const container = document.getElementById("aboutContainer");
             container.innerHTML = "";
 
+            // About Us paragraph section
+            if (data.about_us) {
+                const aboutUsSection = document.createElement("section");
+                aboutUsSection.className = "about-section";
+                aboutUsSection.style.marginBottom = "2rem";
+                aboutUsSection.innerHTML = `
+                    <h2>Our Mission</h2>
+                    <div style="background: rgba(15, 23, 42, 0.6); padding: 2rem; border-radius: 1.5rem; border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.5);">
+                        <p style="font-size: 1.2rem; color: #cbd5e1; line-height: 1.8;">${data.about_us}</p>
+                    </div>
+                `;
+                aboutUsSection.style.animation = "popIn 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) both";
+                container.appendChild(aboutUsSection);
+            }
+
             // Contributors section
             if (data.contributors && data.contributors.length > 0) {
                 const contributorSection = document.createElement("section");
@@ -68,21 +83,6 @@
                 });
                 contributorSection.appendChild(grid);
                 container.appendChild(contributorSection);
-            }
-
-            // About Us paragraph section
-            if (data.about_us) {
-                const aboutUsSection = document.createElement("section");
-                aboutUsSection.className = "about-section";
-                aboutUsSection.style.marginTop = "2rem";
-                aboutUsSection.innerHTML = `
-                    <h2>Our Mission</h2>
-                    <div style="background: rgba(15, 23, 42, 0.6); padding: 2rem; border-radius: 1.5rem; border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.5);">
-                        <p style="font-size: 1.2rem; color: #cbd5e1; line-height: 1.8;">${data.about_us}</p>
-                    </div>
-                `;
-                aboutUsSection.style.animation = "popIn 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) both";
-                container.appendChild(aboutUsSection);
             }
         }
 
