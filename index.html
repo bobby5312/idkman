@@ -10,7 +10,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=3.5" />
+  <link rel="stylesheet" href="styles.css?v=3.6" />
   <link rel="stylesheet" href="about.css" />
 </head>
 
@@ -87,7 +87,7 @@
             <p><strong>Location:</strong> ${card.location || 'Unknown'}</p>
             <div class="back-text">${card.text || ''}</div>
           </div>
-          <p style="text-align: center; color: #64748b; font-size: 0.9rem; margin-top: auto;">Click outside to close</p>
+          <div class="flip-back-hint" style="text-align: center; color: #94a3b8; font-size: 1rem; margin-top: auto; cursor: pointer; padding: 0.5rem; border-radius: 0.5rem; background: rgba(255,255,255,0.05); transition: background 0.3s; margin-bottom: -0.5rem;">Click to flip back &bull; Click outside to close</div>
         </div>
       `;
 
@@ -111,16 +111,25 @@
     // Modal Events
     document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("cardModal").addEventListener("click", (e) => {
-        // Allow interacting with the scrollable text area without flipping the card
-        if (e.target.closest('.back-text')) {
+        // If clicking outside the card completely
+        if (!e.target.closest('.modal-card')) {
+          closeModal();
           return;
         }
 
-        if (e.target.closest('.modal-card')) {
-          document.getElementById("modalCardInner").classList.toggle('is-flipped');
+        // If clicking the flip back button specifically
+        if (e.target.closest('.flip-back-hint')) {
+          document.getElementById("modalCardInner").classList.remove('is-flipped');
           return;
         }
-        closeModal(); // Clicking outside the card closes it
+
+        // If clicking the front face
+        if (e.target.closest('.modal-card-front')) {
+          document.getElementById("modalCardInner").classList.add('is-flipped');
+          return;
+        }
+
+        // Anything else inside the modal card (like clicking the back, scrolling, etc) does nothing
       });
     });
 

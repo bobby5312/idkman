@@ -459,6 +459,7 @@ body {
   position: absolute;
   width: 100%;
   height: 100%;
+  transition: opacity 0.3s ease, z-index 0s;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   border-radius: 1.5rem;
@@ -467,11 +468,27 @@ body {
   overflow: hidden;
 }
 
+.modal-card-front {
+  z-index: 2;
+}
+
 .modal-card-back {
   transform: rotateY(180deg);
   display: flex;
   flex-direction: column;
   padding: 1.5rem;
+  z-index: 1;
+}
+
+.modal-card-inner.is-flipped .modal-card-front {
+  pointer-events: none;
+  opacity: 0;
+  z-index: 1;
+}
+
+.modal-card-inner.is-flipped .modal-card-back {
+  pointer-events: auto;
+  z-index: 2;
 }
 
 .back-content {
@@ -519,9 +536,8 @@ body {
   line-height: 1.6;
   font-style: italic;
   border-left: 3px solid #38bdf8;
-  padding-left: 1rem;
+  padding: 1rem 1.5rem 1rem 1rem;
   background: rgba(255, 255, 255, 0.03);
-  padding: 1rem;
   border-radius: 0 0.5rem 0.5rem 0;
   transform: translateZ(1px);
   overscroll-behavior: contain;
@@ -531,17 +547,23 @@ body {
 
 /* Custom scrollbar for back-text */
 .back-text::-webkit-scrollbar {
-  width: 6px;
+  width: 14px;
 }
 
 .back-text::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 4px;
+  background: rgba(15, 23, 42, 0.4);
+  border-radius: 7px;
 }
 
 .back-text::-webkit-scrollbar-thumb {
-  background: rgba(56, 189, 248, 0.5);
-  border-radius: 4px;
+  background: rgba(56, 189, 248, 0.6);
+  border-radius: 7px;
+  border: 3px solid rgba(15, 23, 42, 0.4);
+  background-clip: padding-box;
+}
+
+.back-text::-webkit-scrollbar-thumb:hover {
+  background: rgba(56, 189, 248, 0.9);
 }
 
 /* Sign Out Modal */
