@@ -86,6 +86,7 @@
           <div class="back-details">
             <p><strong>Creator:</strong> ${card.creator || 'Unknown'}</p>
             <p><strong>Location:</strong> ${card.location || 'Unknown'}</p>
+            <p><strong># Existing:</strong> ${card.existing !== undefined ? card.existing : 'Unknown'}</p>
             <div class="back-text">${card.text || ''}</div>
           </div>
           <div class="flip-back-hint" style="text-align: center; color: #94a3b8; font-size: 1rem; margin-top: auto; cursor: pointer; padding: 0.5rem; border-radius: 0.5rem; background: rgba(255,255,255,0.05); transition: background 0.3s; margin-bottom: -0.5rem;">Click to flip back &bull; Click outside to close</div>

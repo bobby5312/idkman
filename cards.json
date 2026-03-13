@@ -8,7 +8,8 @@
       "bg_color": "#1f2937",
       "creator": "System Admin",
       "location": "Mainframe",
-      "hidden": true
+      "hidden": true,
+      "existing": 1
     },
     {
       "cardNumber": "N/A",
@@ -18,7 +19,8 @@
       "bg_color": "#1e40af",
       "creator": "Developer",
       "location": "Database",
-      "hidden": true
+      "hidden": true,
+      "existing": "???"
     },
     {
       "cardNumber": "001",
@@ -27,7 +29,8 @@
       "image": "images/arch.jpg",
       "bg_color": "#b91c1c",
       "creator": "Xeos",
-      "location": "20 Grand Army Plz"
+      "location": "20 Grand Army Plz",
+      "existing": 5
     },
     {
       "cardNumber": "002",
@@ -36,7 +39,8 @@
       "image": "images/wonderwheel.jpg",
       "bg_color": "#846bcf",
       "creator": "Xeos",
-      "location": "Inside Coney Island Park"
+      "location": "Inside Coney Island Park",
+      "existing": 5
     },
     {
       "cardNumber": "???",
@@ -45,7 +49,8 @@
       "image": "images/comingsoon.png",
       "bg_color": "#87AB8C",
       "creator": "Unknown",
-      "location": "Unknown"
+      "location": "Unknown",
+      "existing": 0
     }
   ]
 }
