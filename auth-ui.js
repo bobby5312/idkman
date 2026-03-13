@@ -1,10 +1,15 @@
 export function setupNavAuth(auth, user, signOutFunc, redirectOnSignOut = false) {
     const navSigninBtn = document.getElementById('navSigninBtn');
     const navDashboard = document.getElementById('navDashboard');
+    const profileIcon = document.getElementById('profileIcon');
 
     if (user) {
         // Authenticated state
         if (navDashboard) navDashboard.style.display = 'block';
+        if (profileIcon) {
+            profileIcon.style.display = 'block';
+            profileIcon.src = "https://api.dicebear.com/9.x/shapes/svg?seed=Profile";
+        }
         if (navSigninBtn) {
             navSigninBtn.textContent = 'Sign Out';
             navSigninBtn.href = '#';
@@ -18,6 +23,7 @@ export function setupNavAuth(auth, user, signOutFunc, redirectOnSignOut = false)
     } else {
         // Unauthenticated state
         if (navDashboard) navDashboard.style.display = 'none';
+        if (profileIcon) profileIcon.style.display = 'none';
         if (navSigninBtn) {
             navSigninBtn.textContent = 'Sign In';
             navSigninBtn.href = 'signin.html';
