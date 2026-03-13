@@ -111,6 +111,11 @@
     // Modal Events
     document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("cardModal").addEventListener("click", (e) => {
+        // Allow interacting with the scrollable text area without flipping the card
+        if (e.target.closest('.back-text')) {
+          return;
+        }
+
         if (e.target.closest('.modal-card')) {
           document.getElementById("modalCardInner").classList.toggle('is-flipped');
           return;
