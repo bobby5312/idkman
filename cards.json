@@ -47,9 +47,19 @@
       "title": "United Nations HQ",
       "text": "The United Nations Headquarters is a modern complex located in Midtown Manhattan, New York City. Built in 1952, it is one of the most iconic buildings in the city and a symbol of international diplomacy. The complex features a sleek glass facade and a large plaza in front of it. The building is home to the United Nations General Assembly and Secretariat, as well as various international organizations and conferences.",
       "image": "images/UNHQ.jpg",
-      "bg_color": "#846bcf",
+      "bg_color": "#559e7c",
       "creator": "Xeos",
       "location": "405 E 45th St",
+      "existing": 5
+    },
+    {
+      "cardNumber": "004",
+      "title": "The Vessel",
+      "text": "The Vessel is a modern skyscraper located in Midtown Manhattan, New York City. Built in 2018, it is one of the most iconic buildings in the city and a symbol of modern architecture. The complex features a sleek glass facade and a large plaza in front of it. The building is home to the United Nations General Assembly and Secretariat, as well as various international organizations and conferences.",
+      "image": "images/Vessel.jpg",
+      "bg_color": "#f2d707",
+      "creator": "Xeos",
+      "location": "20 Hudson Yards",
       "existing": 5
     },
     {
