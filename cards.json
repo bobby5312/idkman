@@ -10,7 +10,8 @@
       "creator": "System Admin",
       "location": "Mainframe",
       "hidden": true,
-      "existing": 1
+      "existing": 1,
+      "tier": "Legendary"
     },
     {
       "cardNumber": "N/A",
@@ -22,7 +23,8 @@
       "creator": "Developer",
       "location": "Database",
       "hidden": true,
-      "existing": "???"
+      "existing": "???",
+      "tier": "Epic"
     },
     {
       "cardNumber": "001",
@@ -32,7 +34,8 @@
       "bg_color": "#b91c1c",
       "creator": "Xeos",
       "location": "20 Grand Army Plz",
-      "existing": 5
+      "existing": 5,
+      "tier": "Rare"
     },
     {
       "cardNumber": "002",
@@ -43,7 +46,8 @@
       "design": "shiny",
       "creator": "Xeos",
       "location": "Inside Coney Island Park",
-      "existing": 5
+      "existing": 5,
+      "tier": "Epic"
     },
     {
       "cardNumber": "003",
@@ -53,7 +57,8 @@
       "bg_color": "#559e7c",
       "creator": "Xeos",
       "location": "405 E 45th St",
-      "existing": 5
+      "existing": 5,
+      "tier": "Rare"
     },
     {
       "cardNumber": "004",
@@ -63,7 +68,8 @@
       "bg_color": "#f2d707",
       "creator": "Xeos",
       "location": "20 Hudson Yards",
-      "existing": 5
+      "existing": 5,
+      "tier": "Legendary"
     },
     {
       "cardNumber": "???",
@@ -73,7 +79,8 @@
       "bg_color": "#87AB8C",
       "creator": "Unknown",
       "location": "Unknown",
-      "existing": 0
+      "existing": 0,
+      "tier": "Common"
     }
   ]
 }

@@ -70,6 +70,7 @@
 
       modalCardFront.innerHTML = `
         <div class="card-number" style="top: 15px; right: 20px; font-size: 1.1rem; padding: 0.4rem 0.8rem;">#${card.cardNumber || '000'}</div>
+        <div class="card-tier tier-${(card.tier || 'common').toLowerCase()}">${card.tier || 'Common'}</div>
         <div class="card-content" style="background: ${card.bg_color || '#020617'}; border-radius: 1.5rem; padding: 1rem; height: 100%;">
           <div class="card-img-container" style="height: 65%;">
             <img src="${card.image || 'https://via.placeholder.com/300x400?text=No+Image'}" alt="${card.title}" class="card-img" />
@@ -150,6 +151,7 @@
 
         div.innerHTML = `
           <div class="card-number">#${card.cardNumber || '000'}</div>
+          <div class="card-tier tier-${(card.tier || 'common').toLowerCase()}">${card.tier || 'Common'}</div>
           <div class="card-content" style="background: ${card.bg_color || '#020617'};">
             <div class="card-img-container">
               <img src="${card.image || 'https://via.placeholder.com/300x400?text=No+Image'}" alt="${card.title}" class="card-img" />
