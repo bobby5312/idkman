@@ -6,6 +6,7 @@
       "text": "All systems operational.",
       "image": "images/devcard.jpg",
       "bg_color": "#1f2937",
+      "design": "mythical",
       "creator": "System Admin",
       "location": "Mainframe",
       "hidden": true,
@@ -17,6 +18,7 @@
       "text": "This is a test card. There are only ?? of these in existence.",
       "image": "images/test1.jpg",
       "bg_color": "#1e40af",
+      "design": "full-art",
       "creator": "Developer",
       "location": "Database",
       "hidden": true,
@@ -38,6 +40,7 @@
       "text": "The Wonder Wheel is a historic Ferris wheel located in Coney Island, Brooklyn. Built in 1920, it stands 150 feet tall and offers panoramic views of the Atlantic Ocean and the New York City skyline. The wheel features 24 cars that can hold up to 6 people each, and it is one of the few Ferris wheels in the world with stationary center support towers.",
       "image": "images/wonderwheel.jpg",
       "bg_color": "#846bcf",
+      "design": "shiny",
       "creator": "Xeos",
       "location": "Inside Coney Island Park",
       "existing": 5

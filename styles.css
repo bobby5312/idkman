@@ -632,3 +632,105 @@ body {
   transform: translateY(-2px);
   box-shadow: 0 8px 25px rgba(239, 68, 68, 0.6);
 }
+
+/* --- Card Designs --- */
+
+/* Basic */
+/* .design-basic implicitly uses base card style */
+
+/* Shiny */
+.design-shiny {
+  border-color: #ffd700 !important;
+  box-shadow: 0 10px 20px -5px rgba(255, 215, 0, 0.4) !important;
+}
+.design-shiny::after {
+  content: "";
+  position: absolute;
+  top: 0; left: -100%; right: 0; bottom: 0;
+  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+  animation: shine 3s infinite linear;
+  pointer-events: none;
+  z-index: 6;
+  border-radius: inherit;
+  overflow: hidden;
+}
+@keyframes shine {
+  0% { left: -100%; }
+  20% { left: 100%; }
+  100% { left: 100%; }
+}
+.card.design-shiny:hover,
+.modal-card-front.design-shiny {
+  box-shadow: -10px 20px 30px rgba(0, 0, 0, 0.6), 0 0 25px rgba(255, 215, 0, 0.6) !important;
+  border-color: #ffe55c !important;
+}
+
+/* Full Art */
+.design-full-art .card-content {
+  padding: 0 !important;
+  border: none !important;
+  background: transparent !important;
+}
+.design-full-art .card-img-container {
+  height: 100% !important;
+  margin-bottom: 0 !important;
+  border: none !important;
+  border-radius: inherit !important;
+  position: absolute !important;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 0;
+}
+.design-full-art .card-info {
+  position: absolute !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  background: linear-gradient(to top, rgba(2, 6, 23, 0.95) 0%, rgba(2, 6, 23, 0.7) 60%, transparent 100%) !important;
+  border: none !important;
+  border-radius: 0 0 inherit inherit !important;
+  padding: 1.5rem 0.75rem 0.75rem !important;
+  z-index: 2 !important;
+}
+.modal-card-front.design-full-art .card-info {
+  padding: 2rem 1.5rem 1.5rem !important;
+  border-radius: 0 0 1.5rem 1.5rem !important;
+}
+.design-full-art .card-number {
+  background: rgba(0, 0, 0, 0.6) !important;
+  z-index: 3 !important;
+}
+
+/* Mythical */
+.design-mythical {
+  border: 1px solid transparent !important;
+  background: linear-gradient(145deg, #2a0845, #6441a5) !important;
+  box-shadow: 0 10px 30px -5px rgba(100, 65, 165, 0.6) !important;
+  position: relative;
+}
+.design-mythical::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  background: linear-gradient(90deg, #ff00cc, #333399, #ff00cc, #333399);
+  background-size: 300% 300%;
+  border-radius: 1.35rem; /* a bit larger than base card radius */
+  z-index: -1;
+  animation: bgPan 3s linear infinite;
+}
+.modal-card-front.design-mythical::before,
+.modal-card-back.design-mythical::before {
+    border-radius: 1.6rem;
+    inset: -4px;
+}
+@keyframes bgPan {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+.card.design-mythical:hover {
+  box-shadow: -10px 20px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(255, 0, 204, 0.6) !important;
+}
+.design-mythical .card-info h2 {
+  color: #ffb3ff !important;
+  text-shadow: 0 0 10px rgba(255, 0, 204, 0.8) !important;
+  border-bottom-color: rgba(255, 0, 204, 0.4) !important;
+}

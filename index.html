@@ -66,10 +66,11 @@
       const modalCardBack = document.getElementById("modalCardBack");
 
       modalCardInner.classList.remove("is-flipped");
+      modalCardFront.className = `modal-card-front design-${card.design || 'basic'}`;
 
       modalCardFront.innerHTML = `
         <div class="card-number" style="top: 15px; right: 20px; font-size: 1.1rem; padding: 0.4rem 0.8rem;">#${card.cardNumber || '000'}</div>
-        <div class="card-content" style="background: ${card.bg_color || '#020617'}; border-radius: 1.5rem; padding: 1rem;">
+        <div class="card-content" style="background: ${card.bg_color || '#020617'}; border-radius: 1.5rem; padding: 1rem; height: 100%;">
           <div class="card-img-container" style="height: 65%;">
             <img src="${card.image || 'https://via.placeholder.com/300x400?text=No+Image'}" alt="${card.title}" class="card-img" />
           </div>
@@ -79,6 +80,7 @@
         </div>
       `;
 
+      modalCardBack.className = `modal-card-back design-${card.design || 'basic'}`;
       modalCardBack.style.background = card.bg_color || '#020617';
       modalCardBack.innerHTML = `
         <div class="back-content">
@@ -142,7 +144,7 @@
 
       cards.forEach((card, index) => {
         const div = document.createElement("div");
-        div.className = "card";
+        div.className = `card design-${card.design || 'basic'}`;
         // Staggered pop-in animation
         div.style.animationDelay = `${index * 0.1}s`;
 
