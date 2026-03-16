@@ -654,18 +654,16 @@ body {
 .design-shiny::after {
   content: "";
   position: absolute;
-  top: 0; left: -100%; right: 0; bottom: 0;
-  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.5), transparent);
-  animation: shine 3s infinite linear;
+  inset: 0;
+  background: radial-gradient(ellipse at 30% 20%, rgba(255, 255, 255, 0.25), transparent 60%);
+  animation: shimmer 3s ease-in-out infinite alternate;
   pointer-events: none;
   z-index: 6;
   border-radius: inherit;
-  overflow: hidden;
 }
-@keyframes shine {
-  0% { left: -100%; }
-  20% { left: 100%; }
-  100% { left: 100%; }
+@keyframes shimmer {
+  0% { opacity: 0.3; }
+  100% { opacity: 0.7; }
 }
 .card.design-shiny:hover,
 .modal-card-front.design-shiny {
