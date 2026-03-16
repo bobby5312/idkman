@@ -66,7 +66,8 @@
       const modalCardBack = document.getElementById("modalCardBack");
 
       modalCardInner.classList.remove("is-flipped");
-      modalCardFront.className = `modal-card-front design-${card.design || 'basic'}`;
+      const design = card.design || (card.tier && card.tier.toLowerCase() === 'legendary' ? 'legendary' : 'basic');
+      modalCardFront.className = `modal-card-front design-${design}`;
 
       modalCardFront.innerHTML = `
         <div class="card-number" style="top: 15px; right: 20px; font-size: 1.1rem; padding: 0.4rem 0.8rem;">#${card.cardNumber || '000'}</div>
@@ -81,7 +82,7 @@
         </div>
       `;
 
-      modalCardBack.className = `modal-card-back design-${card.design || 'basic'}`;
+      modalCardBack.className = `modal-card-back design-${design}`;
       modalCardBack.style.background = card.bg_color || '#020617';
       modalCardBack.innerHTML = `
         <div class="back-content">
@@ -145,7 +146,8 @@
 
       cards.forEach((card, index) => {
         const div = document.createElement("div");
-        div.className = `card design-${card.design || 'basic'}`;
+        const design = card.design || (card.tier && card.tier.toLowerCase() === 'legendary' ? 'legendary' : 'basic');
+        div.className = `card design-${design}`;
         // Staggered pop-in animation
         div.style.animationDelay = `${index * 0.1}s`;
 
@@ -230,16 +232,20 @@
         .catch(err => console.error("Error fetching cards:", err));
     }
 
-    // Filter cards as the user types
+    // Filter cards as the user types with a small debounce for smoothness
+    let searchTimeout;
     document.getElementById("searchInput").addEventListener("input", (e) => {
-      const searchTerm = e.target.value.toLowerCase();
-      const filteredCards = currentCardsList.filter(card => {
-        if (card.hidden && !window.isContributor) return false;
-        const nameMatch = card.title && card.title.toLowerCase().includes(searchTerm);
-        const numMatch = card.cardNumber && card.cardNumber.toString().toLowerCase().includes(searchTerm);
-        return nameMatch || numMatch;
-      });
-      renderCards(filteredCards);
+      clearTimeout(searchTimeout);
+      searchTimeout = setTimeout(() => {
+        const searchTerm = e.target.value.toLowerCase();
+        const filteredCards = currentCardsList.filter(card => {
+          if (card.hidden && !window.isContributor) return false;
+          const nameMatch = card.title && card.title.toLowerCase().includes(searchTerm);
+          const numMatch = card.cardNumber && card.cardNumber.toString().toLowerCase().includes(searchTerm);
+          return nameMatch || numMatch;
+        });
+        renderCards(filteredCards);
+      }, 150);
     });
 
     // Initial fetch

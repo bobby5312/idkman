@@ -66,6 +66,7 @@
       "text": "The Vessel is a modern skyscraper located in Midtown Manhattan, New York City. Built in 2018, it is one of the most iconic buildings in the city and a symbol of modern architecture. The complex features a sleek glass facade and a large plaza in front of it.",
       "image": "images/Vessel.jpg",
       "bg_color": "#f2d707",
+      "design": "legendary",
       "creator": "Xeos",
       "location": "20 Hudson Yards",
       "existing": 5,
