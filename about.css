@@ -95,3 +95,44 @@
     color: #94a3b8;
     line-height: 1.6;
 }
+
+/* ---- About responsive ---- */
+@media (max-width: 900px) {
+    .person-grid {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 2rem;
+    }
+
+    .about-container {
+        gap: 3.5rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .about-container {
+        gap: 2.5rem;
+    }
+
+    .about-section h2 {
+        font-size: 1.8rem;
+        letter-spacing: 1px;
+    }
+
+    .person-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .person-card {
+        padding: 2rem 1.25rem;
+    }
+
+    .person-img-container {
+        width: 110px;
+        height: 110px;
+    }
+
+    .person-info h3 {
+        font-size: 1.5rem;
+    }
+}

@@ -129,3 +129,15 @@
     background: rgba(239, 68, 68, 0.3);
     box-shadow: 0 8px 25px rgba(239, 68, 68, 0.4);
 }
+
+@media (max-width: 600px) {
+    .auth-container {
+        padding: 2rem 1.5rem;
+        border-radius: 1.25rem;
+        margin-top: 0.5rem;
+    }
+
+    .auth-header h2 {
+        font-size: 1.8rem;
+    }
+}
