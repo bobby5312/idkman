@@ -66,7 +66,12 @@
       const modalCardBack = document.getElementById("modalCardBack");
 
       modalCardInner.classList.remove("is-flipped");
-      const design = card.design || (card.tier && card.tier.toLowerCase() === 'legendary' ? 'legendary' : 'basic');
+      let design = card.design;
+      if (!design) {
+        if (card.tier && card.tier.toLowerCase() === 'legendary') design = 'legendary';
+        else if (card.tier && card.tier.toLowerCase() === 'epic') design = 'epic';
+        else design = 'basic';
+      }
       modalCardFront.className = `modal-card-front design-${design}`;
 
       modalCardFront.innerHTML = `
@@ -146,7 +151,12 @@
 
       cards.forEach((card, index) => {
         const div = document.createElement("div");
-        const design = card.design || (card.tier && card.tier.toLowerCase() === 'legendary' ? 'legendary' : 'basic');
+        let design = card.design;
+        if (!design) {
+          if (card.tier && card.tier.toLowerCase() === 'legendary') design = 'legendary';
+          else if (card.tier && card.tier.toLowerCase() === 'epic') design = 'epic';
+          else design = 'basic';
+        }
         div.className = `card design-${design}`;
         // Staggered pop-in animation
         div.style.animationDelay = `${index * 0.1}s`;
